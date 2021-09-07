@@ -1,0 +1,237 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* paleta de colores----------------- 
+-------------------------------------*/
+/* Estilo Textos -----------
+---------------------------- */
+#show-card {
+  display: none;
+  font-weight: 900;
+  font-size: 3rem;
+  text-align: center;
+  color: white;
+}
+
+#closeCard {
+  text-align: end;
+}
+
+/* Form hidders -----------*/
+#subType3d, #tasks3d, #timer2d, #tasks2d, #EVTimer, #tasksEv {
+  display: none;
+}
+
+/* Headings ------------
+------------------------*/
+h1 {
+  color: black;
+  font-family: "spartan", sans-serif;
+  font-size: 4rem;
+  font-weight: bold;
+  letter-spacing: 15px;
+  padding: 10px;
+}
+
+h2 {
+  color: grey;
+  font-family: "spartan", sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+  padding: 10px;
+  display: -webkit-inline-box;
+}
+
+h3 {
+  color: transparent;
+  font-family: "spartan", sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0px;
+  background: linear-gradient(to left, #ffb452, #ff88eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+h4 {
+  font-family: "montserrat", sans-serif;
+  padding: 10px;
+}
+
+/* Body! --------------
+-----------------------*/
+#nav-bar {
+  background-color: black;
+}
+#nav-bar div {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#nav-bar ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style-type: none;
+  text-decoration: none;
+}
+#nav-bar ul li {
+  padding: 0 20px;
+  color: transparent;
+  font-family: "montserrat", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  background: linear-gradient(to left, #ffb452, #ff88eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+#nav-bar ul li a {
+  text-decoration: none;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  height: 700px;
+  background: rgba(247, 237, 204, 0.733);
+  background-image: url(https://64.media.tumblr.com/90d11c7e7f9ca7339bcefedcdda092c0/ea8be5827f0ac52b-7c/s1280x1920/15748f5f758f314c6f4ca37bc060cea9382e21e1.jpg);
+  background-size: cover;
+  background-position: -22rem, bottom;
+}
+main aside {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto 0;
+  padding: 0 20px;
+  width: 35%;
+  height: 100%;
+  background: rgba(247, 237, 204, 0.733);
+}
+main aside p {
+  color: black;
+  font-family: "montserrat", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 0px;
+  margin: 10px 0;
+  text-shadow: #f7edcc 1px 0 10px;
+}
+main aside p span {
+  background: linear-gradient(to left, #ffb452, #ff88eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: black 3px 1px 0px;
+}
+main .bud-script {
+  background: #f7edcc;
+  width: 65%;
+}
+
+/* Tarjeta de Proyecto!!!------- */
+.bud-script {
+  display: flex;
+  background: #f7edcc;
+  width: 65%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  margin: 20px auto;
+  padding: 20px;
+  width: 580px;
+  min-height: 200px;
+  display: grid;
+  grid-template-rows: 20px 60px 1fr 50px;
+  border-radius: 10px;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s;
+  background: radial-gradient(rgba(255, 180, 82, 0.521), rgba(255, 136, 235, 0.664));
+}
+
+.card-toggle {
+  margin: 20px;
+  padding: 20px;
+  width: 100px;
+  min-height: 100px;
+  display: inline-block;
+  border-radius: 10px;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s;
+  background: radial-gradient(rgba(255, 180, 82, 0.521), rgba(255, 136, 235, 0.664));
+}
+.card-toggle .fa-star {
+  margin-top: 12%;
+}
+
+.card:hover {
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+  transform: scale(1.01);
+  background: radial-gradient(#b99769, #a5709c);
+}
+.card:hover h2 {
+  color: white;
+}
+
+.card__link,
+.card__exit,
+.card__icon {
+  position: relative;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.card__exit {
+  text-align: end;
+}
+
+.card__link::after {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  content: "";
+  width: 0%;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.6);
+  transition: all 0.5s;
+}
+
+.card__link:hover::after {
+  width: 100%;
+}
+
+.card__exit {
+  grid-row: 1/2;
+  justify-self: end;
+}
+
+.card__icon {
+  grid-row: 2/3;
+  font-size: 30px;
+}
+
+.card__title {
+  grid-row: 3/4;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.card__apply {
+  grid-row: 4/5;
+  align-self: center;
+  font-family: "spartan", sans-serif;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,250 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* paleta de colores----------------- 
+-------------------------------------*/
+$paleta: (
+    white
+    black
+    grey
+    rgb(124, 65, 124)
+    rgb(131, 114, 93)
+    rgb(86, 108, 126)
+    linear-gradient(to left, rgb(255, 180, 82), rgb(255, 136, 235),)
+    rgba(247, 237, 204, 0.733)
+    rgba(247, 237, 204,)
+    radial-gradient(rgba(255, 180, 82, 0.521), rgba(255, 136, 235, 0.664),)
+    radial-gradient(rgb(185, 151, 105), rgb(165, 112, 156),)
+
+);
+
+/* Estilo Textos -----------
+---------------------------- */
+
+@mixin estitulo($tamano,$espaciado,$color) {
+    color: $color;
+    font-family: 'spartan', sans-serif;
+    font-size: $tamano;
+    font-weight: bold;
+    letter-spacing: $espaciado;
+}
+
+@mixin estparrafo($tamano, $espaciado,$color) {
+    color: $color;
+    font-family: 'montserrat', sans-serif;
+    font-size: $tamano;
+    font-weight: 900;
+    letter-spacing: $espaciado;
+}
+
+@mixin textgrad($color) {
+    background:$color;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;    
+}
+
+
+#show-card {
+    display: none;
+    font-weight: 900;
+    font-size: 3rem;
+    text-align: center;
+    color:nth($paleta, 1);
+}
+#closeCard {
+    text-align: end;
+}
+
+/* Form hidders -----------*/
+
+#subType3d, #tasks3d, #timer2d, #tasks2d, #EVTimer, #tasksEv {
+    display: none
+}
+
+
+/* Headings ------------
+------------------------*/
+h1 {
+    @include estitulo(4rem, 15px , nth($paleta, 2));
+    padding: 10px;
+}
+
+h2 {
+    @include estitulo(2.5rem,3px ,nth($paleta, 3));
+    padding: 10px;
+    display: -webkit-inline-box;
+}
+
+h3 {
+    @include estitulo(1.5rem, 0px, transparent);
+    @include textgrad(nth($paleta, 7));
+    margin: 0;
+}
+
+h4 {
+    font-family: 'montserrat', sans-serif;
+    padding: 10px;
+}
+
+/* Body! --------------
+-----------------------*/
+
+#nav-bar{
+    background-color: nth($paleta , 2);
+    div{
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        list-style-type: none;
+        text-decoration: none;
+
+        li {
+            padding: 0 20px;
+            @include estparrafo(1.2rem, 0, transparent);
+            @include textgrad(nth($paleta, 7));
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+main {
+    width: 100%;
+    display:flex;
+    height: 700px;
+    background: nth($paleta , 8);
+    background-image:url(https://64.media.tumblr.com/90d11c7e7f9ca7339bcefedcdda092c0/ea8be5827f0ac52b-7c/s1280x1920/15748f5f758f314c6f4ca37bc060cea9382e21e1.jpg);
+    background-size: cover;
+    background-position: -22rem, bottom;
+    aside{
+        position: relative;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: auto 0;
+        padding: 0 20px;
+        width: 35%;
+        height: 100%;
+        background: nth($paleta, 8);
+        p{
+            @include estparrafo(1.2rem, 0px, nth($paleta, 2));
+            margin: 10px 0;
+            text-shadow: nth($paleta , 9) 1px 0 10px;
+            span {
+                @include textgrad(nth($paleta, 7));
+                text-shadow: nth($paleta , 2) 3px 1px 0px;
+            }
+        }  
+    }
+    .bud-script{
+        background: nth($paleta , 9 );
+        width: 65%;
+    }
+}
+
+/* Tarjeta de Proyecto!!!------- */
+
+.bud-script {
+    display: flex;
+    background: #f7edcc;
+    width: 65%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    margin:20px auto;
+    padding: 20px;
+    width: 580px;
+    min-height: 200px;
+    display: grid;
+    grid-template-rows: 20px 60px 1fr 50px;
+    border-radius: 10px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s;
+    background: nth($paleta, 10);
+  }
+
+.card-toggle {
+    margin: 20px;
+    padding: 20px;
+    width: 100px;
+    min-height: 100px;
+    display: inline-block;
+    border-radius: 10px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s;
+    background: nth($paleta, 10);
+    .fa-star {
+        margin-top: 12%;
+    }
+}
+  
+  .card:hover {
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+    transform: scale(1.01);
+    background: nth($paleta, 11);
+    h2{
+        color: nth($paleta, 1);
+    }
+  }
+  
+  .card__link,
+  .card__exit,
+  .card__icon {
+    position: relative;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .card__exit{
+      text-align: end;
+  }
+  
+  .card__link::after {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    content: "";
+    width: 0%;
+    height: 3px;
+    background-color: rgba(255, 255, 255, 0.6);
+    transition: all 0.5s;
+  }
+  
+  .card__link:hover::after {
+    width: 100%;
+  }
+  
+  .card__exit {
+    grid-row: 1/2;
+    justify-self: end;
+  }
+  
+  .card__icon {
+    grid-row: 2/3;
+    font-size: 30px;
+  }
+  
+  .card__title {
+    grid-row: 3/4;
+    font-weight: 400;
+    color: #ffffff;
+  }
+  
+  .card__apply {
+    grid-row: 4/5;
+    align-self: center;
+    font-family: 'spartan', sans-serif;
+  }
