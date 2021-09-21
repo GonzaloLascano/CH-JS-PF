@@ -75,6 +75,7 @@ h1 {
 h2 {
     @include estitulo(2.5rem,3px ,nth($paleta, 3));
     padding: 10px;
+    margin: 0px;
     display: -webkit-inline-box;
 }
 
@@ -91,6 +92,10 @@ h4 {
 
 /* Body! --------------
 -----------------------*/
+
+.cuerpo{
+    background-color: nth($paleta, 2);
+}
 
 #nav-bar{
     background-color: nth($paleta , 2);
@@ -144,13 +149,17 @@ main {
                 @include textgrad(nth($paleta, 7));
                 text-shadow: nth($paleta , 2) 3px 1px 0px;
             }
-        }  
+        }
     }
     .bud-script{
         background: nth($paleta , 9 );
         width: 65%;
     }
 }
+
+#formBorder{
+    border: solid 1px black;
+}  
 
 /* Tarjeta de Proyecto!!!------- */
 
@@ -163,17 +172,26 @@ main {
     align-items: center;
 }
 
+
 .card {
     margin:20px auto;
     padding: 20px;
     width: 580px;
     min-height: 200px;
-    display: grid;
-    grid-template-rows: 20px 60px 1fr 50px;
-    border-radius: 10px;
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
     transition: all 0.2s;
     background: nth($paleta, 10);
+    h2{
+        color: nth($paleta, 1);
+        margin: 0px;
+        P {
+            margin: 0px;
+        }
+    }
+  }
+  
+  #card-1{
+      display: none;
   }
 
 .card-toggle {
@@ -195,9 +213,6 @@ main {
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
     transform: scale(1.01);
     background: nth($paleta, 11);
-    h2{
-        color: nth($paleta, 1);
-    }
   }
   
   .card__link,
@@ -206,10 +221,6 @@ main {
     position: relative;
     text-decoration: none;
     color: rgba(255, 255, 255, 0.9);
-  }
-
-  .card__exit{
-      text-align: end;
   }
   
   .card__link::after {
@@ -228,8 +239,10 @@ main {
   }
   
   .card__exit {
+    margin: 0px;
     grid-row: 1/2;
     justify-self: end;
+    text-align: end;
   }
   
   .card__icon {
@@ -238,13 +251,25 @@ main {
   }
   
   .card__title {
+    padding: 0 0 30px 0;
     grid-row: 3/4;
     font-weight: 400;
     color: #ffffff;
   }
   
   .card__apply {
+    margin: 0px;
     grid-row: 4/5;
     align-self: center;
     font-family: 'spartan', sans-serif;
+  }
+
+//FOOTER--------------------------------
+  footer{
+      .locaTime {
+          margin: 20px;
+          text-align: end;
+          font-size: 1.2vw;
+          color: nth($paleta, 1);
+      }
   }

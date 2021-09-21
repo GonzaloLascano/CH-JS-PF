@@ -42,6 +42,7 @@ h2 {
   font-weight: bold;
   letter-spacing: 3px;
   padding: 10px;
+  margin: 0px;
   display: -webkit-inline-box;
 }
 
@@ -65,6 +66,10 @@ h4 {
 
 /* Body! --------------
 -----------------------*/
+.cuerpo {
+  background-color: black;
+}
+
 #nav-bar {
   background-color: black;
 }
@@ -138,6 +143,10 @@ main .bud-script {
   width: 65%;
 }
 
+#formBorder {
+  border: solid 1px black;
+}
+
 /* Tarjeta de Proyecto!!!------- */
 .bud-script {
   display: flex;
@@ -153,12 +162,20 @@ main .bud-script {
   padding: 20px;
   width: 580px;
   min-height: 200px;
-  display: grid;
-  grid-template-rows: 20px 60px 1fr 50px;
-  border-radius: 10px;
   box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
   transition: all 0.2s;
   background: radial-gradient(rgba(255, 180, 82, 0.521), rgba(255, 136, 235, 0.664));
+}
+.card h2 {
+  color: white;
+  margin: 0px;
+}
+.card h2 P {
+  margin: 0px;
+}
+
+#card-1 {
+  display: none;
 }
 
 .card-toggle {
@@ -181,9 +198,6 @@ main .bud-script {
   transform: scale(1.01);
   background: radial-gradient(#b99769, #a5709c);
 }
-.card:hover h2 {
-  color: white;
-}
 
 .card__link,
 .card__exit,
@@ -191,10 +205,6 @@ main .bud-script {
   position: relative;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.9);
-}
-
-.card__exit {
-  text-align: end;
 }
 
 .card__link::after {
@@ -213,8 +223,10 @@ main .bud-script {
 }
 
 .card__exit {
+  margin: 0px;
   grid-row: 1/2;
   justify-self: end;
+  text-align: end;
 }
 
 .card__icon {
@@ -223,15 +235,24 @@ main .bud-script {
 }
 
 .card__title {
+  padding: 0 0 30px 0;
   grid-row: 3/4;
   font-weight: 400;
   color: #ffffff;
 }
 
 .card__apply {
+  margin: 0px;
   grid-row: 4/5;
   align-self: center;
   font-family: "spartan", sans-serif;
+}
+
+footer .locaTime {
+  margin: 20px;
+  text-align: end;
+  font-size: 1.2vw;
+  color: white;
 }
 
 /*# sourceMappingURL=style.css.map */
