@@ -95,21 +95,32 @@ function createUser(){
     client = new Client($("#userName").val(), $("#userMail").val());
     $("#btnNewProj").prop('disabled',false);
     console.log(client);
+    
 }
 
 function createProj(){
-    project = new Project($("#projName").val());
-    $("#addProd").prop('disabled',false);
-    client.addProject(project);
-    console.log(client);
-
+    console.log(client.projects.length);
+    if (client.projects.length > 2) {
+        alert("Tranquilo, tigre/sa. Empecemos con 3 proyectos. Si queres, podes eliminar alguno de los anteriores.");
+    }
+    else {
+        project = new Project($("#projName").val());
+        $("#addProd").prop('disabled',false);
+        client.addProject(project);
+        console.log(client);
+    }
 }
 
 function createProd(){
-    prodType = $('#typeCont input:checked').next("label").text();
-    let product = new Product(prodType);
-    project.addProduct(product);
-    console.log(client)
+    if (project.products.length > 5) {
+        alert("Has superado el limite de productos. Si queres podes eliminar uno.")
+    }
+    else{
+        prodType = $('#typeCont input:checked').next("label").text();
+        let product = new Product(prodType);
+        project.addProduct(product);
+        console.log(client);
+    }
 }
 
 /* Mostrador de multiplicadores y tareas */
