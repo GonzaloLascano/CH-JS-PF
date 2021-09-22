@@ -85,11 +85,12 @@ $("#btnNewCl").on("click", createUser);
 $('#btnNewProj').on("click",createProj);
 $('#addProd').on("click",createProd);
 $('#typeCont input').on('click', newShowType);
+$('#endProject').on('click', printCard)
 $('#saveUserData').on('click',storeUser);
 
 /* --------------------Agregando Funciones-------------------- */
 
-/* Creacion de Cliente Producto y Objeto */
+/* Creacion de Cliente Proyecto y Producto */
 
 function createUser(){
     client = new Client($("#userName").val(), $("#userMail").val());
@@ -99,7 +100,6 @@ function createUser(){
 }
 
 function createProj(){
-    console.log(client.projects.length);
     if (client.projects.length > 2) {
         alert("Tranquilo, tigre/sa. Empecemos con 3 proyectos. Si queres, podes eliminar alguno de los anteriores.");
     }
@@ -117,10 +117,31 @@ function createProd(){
     }
     else{
         prodType = $('#typeCont input:checked').next("label").text();
+        prodValue = $('#typeCont input:checked').val();
         let product = new Product(prodType);
         project.addProduct(product);
-        console.log(client);
+        $(".prodShelf").append(`<div class="test itemType-${prodValue}"></div>`);
+        console.log($(".prodShelf"));
     }
+}
+
+function printCard() {
+    let cNumber = client.projects.length;
+    console.log(cNumber);
+    $('footer').append(`
+    <div class="card" id="card-${cNumber}">
+            <i title="mostrar cartas" class="fas fa-star" id="show-card-${cNumber}"></i>
+            <div class="card1-content">
+                <p class="card__exit"><i class="far fa-times-circle" id="closeCard-${cNumber}"></i></p>
+                <div class="card__icon">
+                    <i class="fas fa-bolt"></i>
+                    <h2>Proyecto:<p>${"" + project.name}</p></h2>
+                </div>
+                <h4 class="card__title">Tu proyecto ${project.name} llevaria unas ${project.time}hs de trabajo y costaria aproximadamente $${project.cost}.</h4>
+            </div>
+        </div>
+    `);
+    
 }
 
 /* Mostrador de multiplicadores y tareas */
