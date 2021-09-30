@@ -1,3 +1,5 @@
+@import 'form-style';
+
 * {
     margin: 0;
     padding: 0;
@@ -98,6 +100,7 @@ h4 {
 }
 
 #nav-bar{
+    width: 100%;
     background-color: nth($paleta , 2);
     div{
         padding: 10px 20px;
@@ -126,18 +129,15 @@ h4 {
 main {
     width: 100%;
     display:flex;
-    height: 700px;
+    height: 800px;
     background: nth($paleta , 8);
     background-image:url(https://64.media.tumblr.com/90d11c7e7f9ca7339bcefedcdda092c0/ea8be5827f0ac52b-7c/s1280x1920/15748f5f758f314c6f4ca37bc060cea9382e21e1.jpg);
     background-size: cover;
     background-position: -22rem, bottom;
     aside{
         position: relative;
-        display:flex;
-        flex-direction: column;
-        justify-content: center;
         margin: auto 0;
-        padding: 0 20px;
+        padding: 38px 20px;
         width: 35%;
         height: 100%;
         background: nth($paleta, 8);
@@ -145,6 +145,7 @@ main {
             @include estparrafo(1.2rem, 0px, nth($paleta, 2));
             margin: 10px 0;
             text-shadow: nth($paleta , 9) 1px 0 10px;
+            font-weight: 500;
             span {
                 @include textgrad(nth($paleta, 7));
                 text-shadow: nth($paleta , 2) 3px 1px 0px;
@@ -157,9 +158,6 @@ main {
     }
 }
 
-#formBorder{
-    border: solid 1px black;
-}  
 
 /* Tarjeta de Proyecto!!!------- */
 
@@ -169,29 +167,7 @@ main {
     width: 65%;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    #budForm {
-        .prodShelf {
-            display: flex;
-            width: 100%;
-            height: 80px;
-            background-color: blueviolet;
-            .test {
-                margin: auto 0 auto 2%;
-                width: 60px;
-                height: 60px;
-            }
-            .itemType-0{
-                background-color: chartreuse;
-            }
-            .itemType-1{
-                background-color: coral;
-            }
-            .itemType-2{
-                background-color: darkblue;
-            }
-        }
-    }    
+    align-items: center;    
 }
 
 
@@ -295,3 +271,6 @@ main {
           color: nth($paleta, 1);
       }
   }
+
+  /* importing form sass */
+  

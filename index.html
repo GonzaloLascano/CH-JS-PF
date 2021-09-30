@@ -39,104 +39,173 @@
         </aside>
         <div class="bud-script">
             <!-- aca va a ir toda la interfaz del script -->
-            <div class="formblock p-4" id="formBorder">
-                <form class="container-fluid p-1 mx-auto" id="budForm">
-                    
-                    <!-- Registro de usuario/cliente -->
-                    <div class="regClte justify-content-between row mx-auto my-3">
-                        <input class="col-5" type="text" name="userName" placeholder="Nombre del cliente" id="userName">
-                        <input class="col-5" type="text" name="userMail" placeholder="Mail" id="userMail">
+            <section class="form-container">
+                <div class="form-page user">
+                    <div class="user-header">
+                        <h2 class="user-title">
+                            Hacemos la Prueba?
+                        </h2>
+                        <p>Completá los campos de usuario y clickeá en "comencemos" para empezar a presupuestar.</p>
                     </div>
-                    <button class="btn btn-dark row col-5 p-1 mx-auto" id="btnNewCl" type="button">Sign In</button>
-                    <!-- nombre del proyecto  -->
-                    <input class="row col-8 mx-auto my-3" type="text" name="projName" placeholder="Nombre del Proyecto" id="projName">
-                    <!-- se crea el proyecto! -->
-                    <div class="regProyecto container-fluid px-0 py-3">
+                    <div class="user-form">
+                         <!-- Registro de usuario/cliente -->
+                         
+                        <input class="client-input" type="text" name="userName" placeholder="Nombre" id="userName">
+                        <input class="client-input" type="text" name="userMail" placeholder="Mail" id="userMail">
+                
+                        <button class="btn btn-dark" id="btnNewCl" type="button">Sign In</button>
+                        <!-- insertar user form aca -->
+                    </div>    
+                </div>
+                <div class="form-page project">
+                    <div class="project-header">
+                        <h2 class="project-title">
+                            Bienvenido saracatunga!
+                        </h2>
+                        <p>En esta plataforma podes crear presupuestos para hasta 4 proyectos. Para crear un nuevo proyecto
+                            tipeá su nombre y hace click en "crear".
+                        </p>
+                    </div>
+                    <div class="project-form">
+                        <!-- formulario de proyecto aqui -->
+                        <!-- nombre del proyecto  -->
+                        <input class="client-input" type="text" name="projName" placeholder="Nombre del Proyecto" id="projName">
                         <!-- Generar Proyecto -->
-                        <button class="btn btn-dark row col-5 p-1 mx-auto" type="button" id="btnNewProj" disabled>Nuevo Proyecto</button>
-                        <!-- seleccionar tipo de proyecto -->
-                        <div class="col-10 mx-auto my-3 d-flex justify-content-between" id="typeCont">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="projType" value="0" id="radio3d">
-                                <label class="form-check-label" for="type3d" checked="">3D</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="projType" value="1" id="radio2d">
-                                <label class="form-check-label" for="radio2d">Animacón 2d</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="projType" value="2" id="radioEV">
-                                <label class="form-check-label" for="radioEV">Edición de video</label>
-                            </div>
-                        </div>                        <!-- Subtipo de proyecto -->
-                            <!-- 3d -->
-                        <select class="form-select form-select-sm px-5 my-3 mx-0" aria-label="Small select" id="subType3d">
-                            <option value="0"selected="">Elija Subtipo</option>
-                            <option value="1">Asset Inanimable</option>
-                            <option value="2">Asset Animable</option>
-                        </select>
-                            <!-- 2d -->
-                        <div id="timer2d">
-                            <input class="col-5 m-3" type="text" name="propName" placeholder="Nombre del objeto/personaje" id="propName">
-                            <input class="col-3 m-3" type="text" name="seg2d" placeholder="Seg. de Animacón" id="seg2d">
-                        </div>
-                            <!-- Edicion de Video -->
-                        <div id="EVTimer">
-                            <input class="col-3 m-3" type="text" name="minVide" placeholder="Min. de Edición" id="minVideo">
-                        </div>
-                        <!-- Tareas! -->
-                        <div id="prodTareas">
-                            <div id="tasks3d">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" value="10" id="design3d">
-                                    <label class="form-check-label" for="inlineCheckDefault">Diseño</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" value="40" id="production3d">
-                                    <label class="form-check-label" for="inlineCheckDefault">Producción</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" value="30" id="render3d">
-                                    <label class="form-check-label" for="inlineCheckDefault">Renderizar</label>
-                                </div>
-                            </div>
-                            <div id="tasks2d">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" value="15" id="body2d">
-                                    <label class="form-check-label" for="inlineCheckDefault">Animación Corporea</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" value="20" id="face2d">
-                                    <label class="form-check-label" for="inlineCheckDefault">Animación Facial</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" value="10" id="character2d">
-                                    <label class="form-check-label" for="inlineCheckDefault">Armado Personaje</label>
-                                </div>
-                            </div>
-                            <div id="tasksEv">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" value="5" id="evMontaje">
-                                    <label class="form-check-label" for="inlineCheckDefault">Montaje</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" value="8" id="evColor">
-                                    <label class="form-check-label" for="inlineCheckDefault">Correccion de Color</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" value="1" id="evEncoding">
-                                    <label class="form-check-label" for="inlineCheckDefault">Encodear</label>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Agregar producto -->
-                        <button class="btn btn-dark mb-3 col-3" type="button" id="addProd" disabled>Guardar Producto!</button>
+                        <button class="btn btn-dark" type="button" id="btnNewProj" disabled>Nuevo Proyecto</button>
                     </div>
-                    <button class="btn btn-outline-dark row col-6 mx-auto my-3" type="button" id="endProject">Finalizar Proyecto</button>
-                    <div class="prodShelf">
+                    <div class="project-footer">
+                        <p>
+                            *una vez finalizados podras ver y eliminar los proyectos creados en el footer de la pagina.
+                        </p>
                     </div>
-                </form>
-            </div>
+                </div>
+                <div class="form-page products">
+                    <div class="product-header">
+                        <h2 class="product-title">
+                            Proyecto Cambalache<!-- nombre de proyecto -->
+                        </h2>
+                        <p>En esta etapa gestionaras los productos que contiene tu proyecto hasta que decidas finalizarlos.</p>
+                    </div>
+                    <div class="product-form">
+                        <div class="product-type" id="typeCont">
+                            <!-- aca van los radio -->  
+                            <div class="form-check form-check-block" id="box3d">
+                                <input class="radio-check" type="radio" name="projType" value="0" id="radio3d">
+                                <label class="form-check-label" for="type3d" checked="">3D Asset</label>
+                            </div>
+                            <div class="form-check form-check-block" id="box2d">
+                                <input class="radio-check" type="radio" name="projType" value="1" id="radio2d">
+                                <label class="form-check-label" for="radio2d">2d Anim.</label>
+                            </div>
+                            <div class="form-check form-check-block" id="boxEv">
+                                <input class="radio-check" type="radio" name="projType" value="2" id="radioEV">
+                                <label class="form-check-label" for="radioEV">Video Ed.</label>
+                            </div>      
+                        </div>
+                        <div class="product-creator">
+                            <div class="product-instructions">
+                                <p>
+                                    ♦ Por favor, seleccioná el tipo de producto que queres crear y completa los campos
+                                    emergentes con la info solicitada.
+                                </p>
+                                <p>
+                                    ♦ Confirmá la creacion de un producto clickeando en la flecha.
+                                </p>
+                                <p>
+                                    ♦ Podes crear hasta 4 productos. Con al menos uno podras <span>Finalizar el Proyecto</span>
+                                    y se te mostrará su presupuesto aprox.
+                                </p>
+                            </div>
+                            <div class="product-timer">
+                                <!-- Subtipo de proyecto -->
+                                    <!-- 3d -->
+                                    <select class="unstyled multiplier" aria-label="Small select" id="subType3d">
+                                        <option value="0"selected="">Elija Subtipo</option>
+                                        <option value="1">Asset Inanimable</option>
+                                        <option value="2">Asset Animable</option>
+                                    </select>
+                                <!-- 2d -->
+                                <div id="timer2d">
+                                    <input class="multiplier" type="text" name="propName" placeholder="Nombre del objeto/personaje" id="propName">
+                                    <input class="multiplier" type="text" name="seg2d" placeholder="Seg. de Animacón" id="seg2d">
+                                </div>
+                                <!-- Edicion de Video -->
+                                <div id="EVTimer">
+                                    <input class="multiplier" type="text" name="minVide" placeholder="Min. de Edición" id="minVideo">
+                                </div>
+                                <div id="prodTareas">
+                                    <div class="task-pack" id="tasks3d">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" value="10" id="design3d">
+                                            <label class="task-label" for="inlineCheckDefault">Diseño</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" value="40" id="production3d">
+                                            <label class="task-label" for="inlineCheckDefault">Producción</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" value="30" id="render3d">
+                                            <label class="task-label" for="inlineCheckDefault">Renderizar</label>
+                                        </div>
+                                    </div>
+                                    <div class="task-pack" id="tasks2d">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" value="15" id="body2d">
+                                            <label class="task-label" for="inlineCheckDefault">Animación Corporea</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" value="20" id="face2d">
+                                            <label class="task-label" for="inlineCheckDefault">Animación Facial</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" value="10" id="character2d">
+                                            <label class="task-label" for="inlineCheckDefault">Armado Personaje</label>
+                                        </div>
+                                    </div>
+                                    <div class="task-pack" id="tasksEv">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" value="5" id="evMontaje">
+                                            <label class="task-label" for="inlineCheckDefault">Montaje</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" value="8" id="evColor">
+                                            <label class="task-label" for="inlineCheckDefault">Correccion de Color</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" value="1" id="evEncoding">
+                                            <label class="task-label" for="inlineCheckDefault">Encodear</label>
+                                        </div>
+                                    </div>
+                                </div>   
+                            </div>
+                        </div>
+                        <div class="confirmation-btns">
+                            <div class="prod-confirm-container">
+                                <button class="btn btn-dark" type="button" id="addProd" disabled>▼</button>
+                                <p>
+                                    Agregar producto
+                                </p>
+                                <!-- add product btn -->
+                            </div>
+                            <!-- end project btn -->
+                            <button class="btn btn-outline-dark" type="button" id="endProject">Finalizar Proyecto</button>
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <p>
+                            En esta barra veras los productos reservados.<br>
+                            Pasa el mouse para mas info. Click para eliminar.
+                        </p>
+                        <!-- product footer -->
+                        <ol class="product-shelf">
+                            <li class="product-icon threed"></li>
+                            <li class="product-icon twod"></li>
+                            <li class="product-icon ev"></li>
+                            <li class="product-icon ev"></li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
             <button class="btn btn-outline-dark row col-6 mx-auto my-3" type="button" id="saveUserData">Almacenar proyectos!</button>
         </div>  
     </main>

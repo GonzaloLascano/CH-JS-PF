@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Spartan:wght@750&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Spartan', sans-serif;
+}
+
+
+/* variables---- */
+
+$colors: ("lila":#CBAEC2, "violeta":#542470,"black":black,"grey":grey,"client-input":rgb(49, 48, 48));
+
+@mixin hideScrollbar {
+    ::-webkit-scrollbar{
+        display: none;
+    }
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+} 
+
+/* individual elements */
+p{
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    color: gray;
+    font-size: small;
+    width: 80%;
+    margin: 10px 0;
+}
+#btnNewCl, #btnNewProj, #endProject{
+    width: 44%;
+    color: black;
+    background-color: map-get($colors, "lila" );
+    border: none;
+}
+#addProd{
+    color: black;
+    background-color: map-get($colors, "lila" );
+    border: none;
+}
+.client-input {
+    padding: 5px 0 5px 10px;
+    width: 80%;
+    border-radius: 5px;
+    background-color:map-get($colors, "client-input");
+    border:none;
+    
+}
+
+body {
+    @include hideScrollbar();
+    .form-container {
+        h2 {
+            font-size: 3rem;
+            color: rgb(66, 20, 66);
+        }
+        position: relative;
+        box-sizing: border-box;
+        width: 500px;
+        height: 572px;
+        padding: 40px 40px 0 40px;
+        overflow: scroll;
+        border-radius: 40px;
+        background-color: white;
+        box-shadow: inset 0px 0px 19px #bdbdbd;
+        .form-page {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+
+        }
+        /* page Client */
+        .user-form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            height: 50%;
+            margin-top: 6%;
+        }
+        /* page Project */
+        .project{
+            display: grid;
+            grid-template-rows: 1fr 2fr 1fr;
+            align-items: center;
+            .project-form {
+                height: 100%;
+                display: flex;
+                align-self: center;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-evenly;
+            }
+            .project-footer {
+                text-align: -webkit-center;
+                ::before{
+                    content: "";
+                    width: 98%;
+                    position: absolute;
+                    left: 0%;
+                    top: -29%;
+                    border: #d9d9d9 solid 1px;
+                }
+            }
+        }
+        /* page Product */
+        .products{
+            position: relative;
+            display: grid;
+            grid-template-rows: 1fr 3.5fr 1fr;
+            justify-items: center;
+            h2{
+                font-size: 2rem;
+                letter-spacing: 0;
+            }
+            p {
+                width: 100%;
+                margin: 0 0 0.5rem 0;
+                text-indent: 0.4rem;
+            }
+            .product-form{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                margin-bottom: 5px;
+                #typeCont{
+                    height: 25%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-around;
+                    align-items: center;
+                    #box3d{background-image: url(4DICON.png);}
+                    #box2d{background-image: url(2DANIMICON.png);}
+                    #boxEv{background-image: url(EVICON.png);}
+                    .form-check.form-check-block {
+                        padding: 0;
+                        height: 100%;
+                        width: 20%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: space-between;
+                        border: solid map-get($colors, "violeta" ) 2px;
+                        border-radius: 15px;
+                        text-align: center;
+                        font-size: .8rem;
+                        font-weight: 100;
+                        text-shadow: 0 0 8px white, 0 0 4px white;;
+                        background-size: contain;
+                        label{
+                            font-style: 'Montserrat', sans-serif;
+                        }
+                        .radio-check{
+                            position: relative;
+                            bottom: 18%;
+                            width: 18px;
+                            height: 29px;
+                        }
+                    } 
+                }
+                .product-creator {
+                    position: relative;
+                    height: 50%;
+                    background-color: #f1eeee;
+                    padding: 10px 10px 0 10px;
+                    .multiplier{
+                        height: 38px;
+                        width: 50%;
+                        font-size: 0.84rem;
+                        font-family: 'Montserrat';
+                        font-weight: bold;
+                        border-radius: 5px 5px 0 0px;
+                        border: 2px;
+                        border-bottom: 2px solid map-get($colors, "violeta");
+                        margin: 15px 8px;
+                    }
+                    #seg2d{
+                        width: 38%;
+                    }
+                    #minVideo{
+                        width: 28%;
+                    }
+                    .task-pack{
+                        margin: 25px 0;
+                        display: flex;
+                        justify-content: space-evenly;
+                        .task-label{
+                            font-family: 'Montserrat';
+                            font-weight: 600;
+                        }
+                    }
+                    .product-instructions{
+                        padding-right: 10px;
+                        position: absolute;
+                        left: 11px;
+                    }
+                }
+                .confirmation-btns{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    .prod-confirm-container{
+                        display: flex;
+                        background-color: #f5e7f1;
+                        border-radius: 5px;
+                        padding-right: 10px;
+                        flex-direction: row;
+                        align-items: flex-end;
+                    }
+                }
+            }
+            .product-footer{
+                position: relative;
+                display: flex;
+                width: 120%;
+                height: 100%;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                background-color: map-get($colors, "violeta" );
+                p{  
+                    position: absolute;
+                    text-align: center;
+                    margin: 0;
+                }
+                ol{
+                    position: absolute;
+                    width: 80%;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin: 0;
+                    padding: 0;
+                    list-style-type: none;
+                    li{
+                        height: 70px;
+                        width: 70px;
+                        background:rgb(255, 255, 255);
+                        border-radius: 15px;
+                        box-shadow:1px 4px 10px #111111;
+                        background-color: rgb(189, 189, 189);
+                        background-position: center;
+                        background-blend-mode: hard-light;
+                        
+
+                    }
+                    .threed {
+                        background-image: url(4DICON.png); 
+                    }
+                    .twod{
+                        background-image: url(2DANIMICON.png);
+                    }
+                    .ev{
+                        background-image: url(EVICON.png);
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+
+/* form switches ----------------
+ multiplicadores */
+#subType3d{display: none;}
+#timer2d{display: none;}
+#EVTimer{display: none;}
+
+/* tareas---------- */
+#tasks3d{display: none;}
+#tasks2d{display: none;}
+#tasksEv{display: none;}
+
+/* instrucciones------ */
+.product-instructions{
+    z-index: 1;
+}
+.product-footer p{
+    z-index: -1;
+}

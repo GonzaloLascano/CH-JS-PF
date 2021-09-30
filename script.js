@@ -76,6 +76,14 @@ class Product {
     addSelectedTsk(tasklist) {
         this.tasks.selectedTasks.push(tasklist)
     }
+
+    displayItem() {
+        let prodValue = $('#typeCont input:checked').val();
+        $(".prodShelf").append(`<div class="test itemType-${prodValue}"></div>`);
+        console.log($(".prodShelf"));
+    }
+
+
 }
 
 /* Agregando escucha de eventos */
@@ -117,11 +125,12 @@ function createProd(){
     }
     else{
         prodType = $('#typeCont input:checked').next("label").text();
-        prodValue = $('#typeCont input:checked').val();
+        //prodValue = $('#typeCont input:checked').val();
         let product = new Product(prodType);
         project.addProduct(product);
-        $(".prodShelf").append(`<div class="test itemType-${prodValue}"></div>`);
-        console.log($(".prodShelf"));
+        product.displayItem();
+       // $(".prodShelf").append(`<div class="test itemType-${prodValue}"></div>`);
+       // console.log($(".prodShelf"));
     }
 }
 
@@ -146,7 +155,7 @@ function printCard() {
 
 /* Mostrador de multiplicadores y tareas */
 
-const MULTI = ['#subType3d', '#tasks3d', '#timer2d', '#tasks2d', '#EVTimer', '#tasksEv']; 
+const MULTI = ['#subType3d', '#tasks3d', '#timer2d', '#tasks2d', '#EVTimer', '#tasksEv','.product-instructions']; 
 
 function newShowType() {
     resetCheckBoxes();
@@ -158,17 +167,17 @@ function newShowType() {
     let checked = $('#typeCont input:checked').val();
     if (checked == "0") {
         $('#subType3d').show();
-        $('#tasks3d').show();
+        $('#tasks3d').css('display', 'flex');
     }
 
     else if (checked == "1") {
         $('#timer2d').show();
-        $('#tasks2d').show();
+        $('#tasks2d').css('display', 'flex');
     }
 
     else if (checked == "2") {
         $('#EVTimer').show();
-        $('#tasksEv').show();
+        $('#tasksEv').css('display', 'flex');
     }
 }
 

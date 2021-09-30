@@ -16,6 +16,6 @@ a futuro las tareas a realizar son:
 3.Corregir habilitadores e inhabilitadores (para controlar los parametros que se ingresan por imput que sean apropiados)
 4.Agregar limitadores: de proyectos a 3, de productos (x proyecto) a 4 ☑
 5.Programar creacion de tarjeta por proyecto y de icono de producto. ☑
-6.Programar funciones para eliminar proyectos y productos del array.
+6.Programar funciones para eliminar proyectos y productos del array con un click en un elemento especifico.
 7.Mejorar la interfaz.
 
