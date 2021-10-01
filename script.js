@@ -49,11 +49,12 @@ class Client {
 
 
 class Project {
-    constructor(name) {
+    constructor(name, id) {
         this.name = name;
         this.products = [];
         this.time = 0;
         this.cost = 0;
+        this.id = id;
     }
     projectLog() {
         localstorage.setItem("Project", JSON.stringify(this));
@@ -63,27 +64,61 @@ class Project {
         this.time = this.time + product.time;
         this.cost = this.time * laborFee;
     }
+    displayCard() {
+        /*     $('#usuario').text(`${client.name}`);
+            $('.card__title').text(`Tu proyecto ${project.name} llevaria unas ${project.time}hs de trabajo y costaria aproximadamente $${project.cost}.`) */
+            
+            $('footer').append(`
+            <div class="card" id="card-${this.id}">
+            <i title="mostrar cartas" class="fas fa-star" id="show-card"></i>
+            <div class="card1-content">
+                <p class="card__exit"><i class="far fa-times-circle" id="closeCard-${this.id}"></i></p>
+                <div class="card__icon">
+                    <i class="fas fa-bolt"></i>
+                    <h2>Proyecto: ${this.name}</h2>
+                </div>
+                <h4 class="card__title">Tu Proyecto: ${this.name}, aproximadamente, tomará unas ${this.time}hs de trabajo
+                y costaría alrededor de los $${this.cost}</h4>
+                </div>
+            </div>
+            `);
+            let proyCard = $(`#card-${this.id}`);
+            proyCard.show();
+            proyCard.css({
+                'top':'-40rem',
+                'opacity':'0',
+                'transform':'scale(1.2)',
+            }).animate({
+                'opacity':'1',
+            }, "fast");
+            proyCard.click(()=>{
+                proyCard.animate({'top':'0',},"fast");
+                proyCard.css({'transform':'scale(1)',});
+            });
+        
+        
+        }
 }
 
 class Product {
-    constructor(type){
+    constructor(type, id){
         this.type = type;
         this.multiplier = parseInt($('#subType3d').children("option:selected").val()) + parseOrDefault("#seg2d") + parseOrDefault("#minVideo");
         this.tasks = createTasks(); //suma de los valores chequeados en los boxes
         this.time = this.tasks.total * this.multiplier;
+        this.id = id;
     }
 
     addSelectedTsk(tasklist) {
         this.tasks.selectedTasks.push(tasklist)
     }
+    
 
     displayItem() {
         let prodValue = $('#typeCont input:checked').val();
-        $(".prodShelf").append(`<div class="test itemType-${prodValue}"></div>`);
-        console.log($(".prodShelf"));
+        $(".product-shelf").append(`<li id="${project.products.length}" title="Producto: ${this.type} deadline: ${this.time}hs" class="product-icon icon-${prodValue}"></li>`);
+        //console.log($(".product-icon"));
     }
-
-
 }
 
 /* Agregando escucha de eventos */
@@ -93,8 +128,10 @@ $("#btnNewCl").on("click", createUser);
 $('#btnNewProj').on("click",createProj);
 $('#addProd').on("click",createProd);
 $('#typeCont input').on('click', newShowType);
-$('#endProject').on('click', printCard)
 $('#saveUserData').on('click',storeUser);
+$("ol").on("click", ".product-icon", deleteProd);
+$('#endProject').on("click", endProy);
+$("footer").on("click", ".card__exit", deleteProy);
 
 /* --------------------Agregando Funciones-------------------- */
 
@@ -112,45 +149,72 @@ function createProj(){
         alert("Tranquilo, tigre/sa. Empecemos con 3 proyectos. Si queres, podes eliminar alguno de los anteriores.");
     }
     else {
-        project = new Project($("#projName").val());
-        $("#addProd").prop('disabled',false);
+        let id = getProjId();
+        project = new Project($("#projName").val(),id);
         client.addProject(project);
         console.log(client);
     }
 }
 
 function createProd(){
-    if (project.products.length > 5) {
+    if (project.products.length > 3) {
         alert("Has superado el limite de productos. Si queres podes eliminar uno.")
     }
     else{
+        let id = getId();
         prodType = $('#typeCont input:checked').next("label").text();
         //prodValue = $('#typeCont input:checked').val();
-        let product = new Product(prodType);
-        project.addProduct(product);
+        let product = new Product(prodType, id);
         product.displayItem();
-       // $(".prodShelf").append(`<div class="test itemType-${prodValue}"></div>`);
-       // console.log($(".prodShelf"));
+        project.addProduct(product);
+        console.log(project.products);
+        resetCheckBoxes();
+        resetTextBoxes();
+        resetRadios();
+        $("#addProd").prop('disabled',true);
+        btnEnabler(project.products, '#endProject');
     }
 }
 
-function printCard() {
-    let cNumber = client.projects.length;
-    console.log(cNumber);
-    $('footer').append(`
-    <div class="card" id="card-${cNumber}">
-            <i title="mostrar cartas" class="fas fa-star" id="show-card-${cNumber}"></i>
-            <div class="card1-content">
-                <p class="card__exit"><i class="far fa-times-circle" id="closeCard-${cNumber}"></i></p>
-                <div class="card__icon">
-                    <i class="fas fa-bolt"></i>
-                    <h2>Proyecto:<p>${"" + project.name}</p></h2>
-                </div>
-                <h4 class="card__title">Tu proyecto ${project.name} llevaria unas ${project.time}hs de trabajo y costaria aproximadamente $${project.cost}.</h4>
-            </div>
-        </div>
-    `);
-    
+function endProy(){
+    project.displayCard();
+    project = 0;
+    $(".product-icon").remove();
+
+}
+
+function deleteProd() {
+    let idx = $(this).index(".product-icon");
+    project.products.splice(idx,1);
+    $(this).remove();
+    btnEnabler(project.products, '#endProject');
+    console.log(project.products);
+}
+
+function deleteProy() {
+    let idx = $(this).parent().parent().index(".card");
+    console.log(idx);
+    client.projects.splice(idx,1);
+    $(this).parent().parent().remove();
+    console.log(client.projects);
+}
+
+function getId(){
+	if (project.products.length > 0) {
+		return project.products[project.products. length -1].id + 1
+	}
+	else{
+		return 1;
+	} 
+}
+
+function getProjId(){
+	if (client.projects.length > 0) {
+		return client.projects[client.projects.length -1].id + 1
+	}
+	else{
+		return 1;
+	} 
 }
 
 /* Mostrador de multiplicadores y tareas */
@@ -166,19 +230,26 @@ function newShowType() {
     }
     let checked = $('#typeCont input:checked').val();
     if (checked == "0") {
+        $("#addProd").prop('disabled',false);
         $('#subType3d').show();
         $('#tasks3d').css('display', 'flex');
     }
 
     else if (checked == "1") {
+        $("#addProd").prop('disabled',false);
         $('#timer2d').show();
         $('#tasks2d').css('display', 'flex');
     }
 
     else if (checked == "2") {
+        $("#addProd").prop('disabled',false);
         $('#EVTimer').show();
         $('#tasksEv').css('display', 'flex');
     }
+    else{ 
+        $("#addProd").prop('disabled',true);
+    }
+
 }
 
 /* Manejo de las tareas del Producto -------------*/
@@ -217,11 +288,12 @@ function resetCheckBoxes() {
 }
 
 function resetTextBoxes() {
-    $('input[type=text]').val("");
+    $('.project-form input[type=text]').val("");
+    $('.product-form input[type=text]').val("");
 }
 
 function resetProyText() {
-    $('.regProyecto input[type=text]').val("");
+    $('.product-timer input[type=text]').val("");
 }
 
 function resetOption(){
@@ -239,29 +311,7 @@ function resetRadios(){
 function storeUser() {
     console.log(client);
     localStorage.setItem(client.mail, JSON.stringify(client));
-    displayCard();
     resetForm();
-}
-
-function displayCard() {
-    $('#usuario').text(` ${client.name}`);
-    $('.card__title').text(`Tu proyecto ${project.name} llevaria unas ${project.time}hs de trabajo y costaria aproximadamente $${project.cost}.`)
-    let showCard = $('#card-1');
-    showCard.show();
-    let proyCard = $('.card');
-    proyCard.css({
-        'top':'-40rem',
-        'opacity':'0',
-        'transform':'scale(1.2)',
-    }).animate({
-        'opacity':'1',
-    }, "fast");
-    proyCard.click(()=>{
-        proyCard.animate({'top':'0',},"fast");
-        proyCard.css({'transform':'scale(1)',});
-    });
-
-
 }
 
 const CLIENTURL = 'https://jsonplaceholder.typicode.com/posts' //simulacion de destino del post (no me dejaba hacerlo con un archivo local, error CORS 405)
@@ -276,11 +326,11 @@ $('#saveUserData').click(() => {
 }
 )
 
-/*------------------------------------------------------------------- Notas de tareas a realizar
-
-1.Resetear el formulario de tareas cuando se guarda un producto o se cambia su tipo.
-2.Boton para finalizar el proyecto (resetea todo el formulario menos el nombre y el mail)
-3.Corregir habilitadores e inhabilitadores
-4.Agregar limitadores: de proyectos a 3, de productos a 6
-5.Programar creacion de tarjeta por proyecto.
-6.Mejorar la interfaz: Animaciones*/
+function btnEnabler(toCheck, toEnable){
+    if (toCheck.length > 0){
+        $(toEnable).prop('disabled',false);
+    }
+    else {
+        $(toEnable).prop('disabled',true);
+    }
+}
