@@ -267,8 +267,12 @@ body {
     }
 }
 
-/* form switches ----------------
- multiplicadores */
+// form switches ----------------
+#saveUserData{
+    display: none;
+    }
+
+ /* multiplicadores */ 
 #subType3d{display: none;}
 #timer2d{display: none;}
 #EVTimer{display: none;}

@@ -108,6 +108,11 @@ class Product {
     displayItem() {
         let prodValue = $('#typeCont input:checked').val();
         $(".product-shelf").append(`<li id="${project.products.length}" title="Producto: ${this.type} deadline: ${this.time}hs" class="product-icon icon-${prodValue}"></li>`);
+        $(`#${project.products.length}`).css({'position':'relative','left':'200px'});
+        $(`#${project.products.length}`).animate(
+            {left:'0px'}, 100    
+        )
+
     }
 }
 
@@ -135,6 +140,7 @@ function createUser(){
             scrollTop: $("#form-project").height()
         }, "slow","swing");
         $(".project-title").text(`Bienvenido! ${client.name}!`);
+        fader('.project-title');
         console.log(client);
     }
     else{
@@ -157,6 +163,7 @@ function createProj(){
         $("#form-project").parent().animate({
             scrollTop: ($("#form-project").height())*2
         }, "slow","swing");
+        fader('.product-title');
         console.log(client);
     }
 }
@@ -184,6 +191,7 @@ function createProd(){
         }
     }
 }
+
 //----Finzalizacion de Proyecto-----
 function endProy(){
     project.displayCard();
@@ -192,7 +200,9 @@ function endProy(){
     $("#form-project").parent().animate({
         scrollTop: ($("#form-project").height())
     }, "slow","swing");
+    submitEnabler();
 }
+
 
 /* Borrado de Productos y de Proyectos */
 
@@ -209,6 +219,7 @@ function deleteProy() {
     console.log(idx);
     client.projects.splice(idx,1);
     $(this).parent().parent().remove();
+    submitEnabler();
     console.log(client.projects);
 }
 
@@ -235,19 +246,19 @@ function newShowType() {
     let checked = $('#typeCont input:checked').val();
     if (checked == "0") {
         $("#addProd").prop('disabled',false);
-        $('#subType3d').show();
+        $('#subType3d').show(400);
         $('#tasks3d').css('display', 'flex');
     }
 
     else if (checked == "1") {
         $("#addProd").prop('disabled',false);
-        $('#timer2d').show();
+        $('#timer2d').show(400);
         $('#tasks2d').css('display', 'flex');
     }
 
     else if (checked == "2") {
         $("#addProd").prop('disabled',false);
-        $('#EVTimer').show();
+        $('#EVTimer').show(400);
         $('#tasksEv').css('display', 'flex');
     }
     else{ 
@@ -327,9 +338,31 @@ const CLIENTURL = 'https://jsonplaceholder.typicode.com/posts' //simulacion de d
 $('#saveUserData').click(() => {
     $.post(CLIENTURL, client,(respuesta, estado) => {
         if (estado === "success") {
-            console.log("guardado");
+            alert("Excelente! Gracias por usar la plataforma. Ni bien pueda reviso los proyectos y estaremos en contacto!");
+            location.reload(true);
         }
     }
     );
+});
+
+function submitEnabler(){
+    if(client.projects.length > 0){
+        $('#saveUserData').show(2000);
+    }
+    else if(client.projects.lenght > 0){
+        $('#saveUserData').hide(2000);
+    }
 }
-);
+
+/* animaciones ----------*/
+$('main > aside > h1').css({'opacity':'0', 'position':'relative', 'left':'3%' });
+$('main > aside > h1').animate({opacity: "1", left: '0'},800);
+
+$('main > aside > p').css({'opacity':'0', 'position':'relative', 'right':'3%' });
+$('main > aside > p').animate({opacity: "1", right: '0'},800);
+
+function fader(element) {
+    $(element).hide();
+    $(element).fadeIn(2000);
+}
+

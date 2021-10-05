@@ -263,8 +263,11 @@ body .form-container .products .product-footer ol .icon-2 {
   background-image: url(EVICON.png);
 }
 
-/* form switches ----------------
- multiplicadores */
+#saveUserData {
+  display: none;
+}
+
+/* multiplicadores */
 #subType3d {
   display: none;
 }
