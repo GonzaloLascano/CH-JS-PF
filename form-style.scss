@@ -113,8 +113,11 @@ body {
             grid-template-rows: 1fr 3.5fr 1fr;
             justify-items: center;
             h2{
+                margin-bottom: 0;
                 font-size: 2rem;
                 letter-spacing: 0;
+                padding-bottom: 0;
+                
             }
             p {
                 width: 100%;

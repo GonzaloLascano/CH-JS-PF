@@ -141,6 +141,7 @@ function createUser(){
         }, "slow","swing");
         $(".project-title").text(`Bienvenido! ${client.name}!`);
         fader('.project-title');
+        sliderLeft(".project-header > p");
         console.log(client);
     }
     else{
@@ -164,6 +165,7 @@ function createProj(){
             scrollTop: ($("#form-project").height())*2
         }, "slow","swing");
         fader('.product-title');
+        sliderLeft(".product-header > p");
         console.log(client);
     }
 }
@@ -355,11 +357,17 @@ function submitEnabler(){
 }
 
 /* animaciones ----------*/
-$('main > aside > h1').css({'opacity':'0', 'position':'relative', 'left':'3%' });
-$('main > aside > h1').animate({opacity: "1", left: '0'},800);
+function sliderLeft(element){
+    $(element).css({'opacity':'0', 'position':'relative', 'left':'3%' });
+    $(element).animate({opacity: "1", left: '0'},800);
+}
+
+sliderLeft('main > aside > h1');
 
 $('main > aside > p').css({'opacity':'0', 'position':'relative', 'right':'3%' });
 $('main > aside > p').animate({opacity: "1", right: '0'},800);
+
+fader('main > aside > h2');
 
 function fader(element) {
     $(element).hide();
