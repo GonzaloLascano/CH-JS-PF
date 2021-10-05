@@ -254,6 +254,7 @@ body .form-container .products .product-footer ol li {
   background-color: #bdbdbd;
   background-position: center;
   background-blend-mode: hard-light;
+  transition: all 0.3s 0s;
 }
 body .form-container .products .product-footer ol .icon-0 {
   background-image: url(4DICON.png);
@@ -302,6 +303,12 @@ body .form-container .products .product-footer ol .icon-2 {
 
 .product-footer p {
   z-index: -1;
+}
+
+/* animaciones */
+/* items y tarjetas on hover */
+.product-footer ol li:hover {
+  transform: scale(1.2);
 }
 
 * {
@@ -560,12 +567,9 @@ footer {
   flex-direction: row;
   justify-content: space-evenly;
   flex-wrap: nowrap;
-}
-footer .locaTime {
-  margin: 20px;
-  text-align: end;
-  font-size: 1.2vw;
-  color: white;
+  background-image: url(projects-pattern.jpg);
+  background-size: contain;
+  background-repeat: space;
 }
 
 /* importing form sass */

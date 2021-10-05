@@ -251,6 +251,7 @@ body {
                         background-color: rgb(189, 189, 189);
                         background-position: center;
                         background-blend-mode: hard-light;
+                        transition: all 0.3s 0s;
                         
 
                     }
@@ -291,4 +292,10 @@ body {
 }
 .product-footer p{
     z-index: -1;
+}
+
+/* animaciones */
+/* items y tarjetas on hover */
+.product-footer ol li:hover{
+    transform: scale(1.2);
 }

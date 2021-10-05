@@ -278,12 +278,9 @@ main {
     flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: nowrap;
-      .locaTime {
-          margin: 20px;
-          text-align: end;
-          font-size: 1.2vw;
-          color: nth($paleta, 1);
-      }
+    background-image: url(projects-pattern.jpg);
+    background-size:contain;
+    background-repeat: space;
   }
 
   /* importing form sass */

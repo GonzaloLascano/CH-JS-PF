@@ -76,7 +76,7 @@ class Project {
         `);
         if (usdRatio > 0) {
             let costInUsd = (this.cost * usdRatio).toFixed(2);
-            $(".card__title").append(`<br>Costo aproximado en dólares: USD$${costInUsd}`);
+            $(`#card-${this.id}`).append(`<br>Costo aproximado en dólares: USD$${costInUsd}`);
         }
         let proyCard = $(`#card-${this.id}`);
         proyCard.show();
@@ -139,7 +139,7 @@ function createUser(){
         $("#form-project").parent().animate({
             scrollTop: $("#form-project").height()
         }, "slow","swing");
-        $(".project-title").text(`Bienvenido! ${client.name}!`);
+        $(".project-title").text(`Bienvenid@! ${client.name}!`);
         fader('.project-title');
         sliderLeft(".project-header > p");
         console.log(client);
@@ -151,7 +151,7 @@ function createUser(){
 
 function createProj(){
     if (client.projects.length > 2) {
-        alert("Tranquilo, tigre/sa. Empecemos con 3 proyectos. Si queres, podes eliminar alguno de los anteriores.");
+        alert("Tranquilo, tigre/sa. Empecemos con 3 proyectos. Si queres, podes eliminar alguno de los anteriores clickeando en el boton de cerrar en las tarjetas del footer.");
     }
     else if ($('#projName').val() == ""){
         alert("Por favor, para empezar completa los campos requeridos!");
