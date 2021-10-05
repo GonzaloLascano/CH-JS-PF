@@ -418,7 +418,7 @@ main aside {
   padding: 38px 20px;
   width: 35%;
   height: 100%;
-  background: rgba(247, 237, 204, 0.733);
+  background: linear-gradient(118deg, white 20%, #ffe4977d);
 }
 main aside p {
   color: black;
@@ -440,7 +440,7 @@ main aside p span {
 main .bud-script {
   background: linear-gradient(314deg, #c4abff, #ffb8a6);
   width: 65%;
-  box-shadow: 6px 0px 16px 0px black;
+  box-shadow: -9px -3px 16px 0px black;
 }
 
 /* Tarjeta de Proyecto!!!------- */
