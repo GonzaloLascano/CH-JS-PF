@@ -48,6 +48,7 @@ body ::-webkit-scrollbar {
 body .form-container {
   scrollbar-width: none;
   position: relative;
+  top: 15%;
   box-sizing: border-box;
   width: 500px;
   height: 572px;
@@ -346,7 +347,7 @@ h2 {
   display: -webkit-inline-box;
 }
 
-h3 {
+.navbar-body h3 {
   color: transparent;
   font-family: "spartan", sans-serif;
   font-size: 1.5rem;
@@ -446,27 +447,24 @@ main .bud-script {
 /* Tarjeta de Proyecto!!!------- */
 .bud-script {
   display: flex;
-  background: #f7edcc;
-  width: 65%;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
-.card {
-  margin: 20px auto;
+.cards {
+  border-radius: 20px;
+  margin: 20px 0;
   padding: 20px;
   width: 580px;
   min-height: 200px;
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 17px 4px rgba(149, 149, 149, 0.7);
   transition: all 0.2s;
-  background: radial-gradient(rgba(255, 180, 82, 0.521), rgba(255, 136, 235, 0.664));
+  background: radial-gradient(white, lightgrey);
+  position: relative;
 }
-.card h2 {
+.cards h2 {
   color: white;
-  margin: 0px;
-}
-.card h2 P {
   margin: 0px;
 }
 
@@ -503,19 +501,11 @@ main .bud-script {
   color: rgba(255, 255, 255, 0.9);
 }
 
-.card__link::after {
-  position: absolute;
-  top: 25px;
-  left: 0;
-  content: "";
-  width: 0%;
-  height: 3px;
-  background-color: rgba(255, 255, 255, 0.6);
-  transition: all 0.5s;
-}
-
-.card__link:hover::after {
-  width: 100%;
+.card__icon {
+  background: linear-gradient(to left, #ffb452, #ff88eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: black 3px 1px 0px;
 }
 
 .card__exit {
@@ -523,6 +513,18 @@ main .bud-script {
   grid-row: 1/2;
   justify-self: end;
   text-align: end;
+  width: 100%;
+}
+.card__exit i {
+  transform: scale(1.5);
+  background: linear-gradient(to left, #ffb452, #ff88eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: black 0px 0px 0px;
+}
+.card__exit i:hover {
+  transform: scale(2);
+  text-shadow: none;
 }
 
 .card__icon {
@@ -531,10 +533,10 @@ main .bud-script {
 }
 
 .card__title {
-  padding: 0 0 30px 0;
-  grid-row: 3/4;
-  font-weight: 400;
-  color: #ffffff;
+  padding: 5px 0;
+  font-weight: 300;
+  color: #000000;
+  text-shadow: 4px 3px 5px #492681, 0px 0px 1px #000000;
 }
 
 .card__apply {
@@ -544,6 +546,16 @@ main .bud-script {
   font-family: "spartan", sans-serif;
 }
 
+#saveUserData {
+  align-self: end;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: nowrap;
+}
 footer .locaTime {
   margin: 20px;
   text-align: end;

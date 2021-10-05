@@ -61,7 +61,7 @@ class Project {
         }
         this.cost = this.time * laborFee;
         $('footer').append(`
-        <div class="card" id="card-${this.id}">
+        <div class="cards" id="card-${this.id}">
         <i title="mostrar cartas" class="fas fa-star" id="show-card"></i>
         <div class="card1-content">
             <p class="card__exit"><i class="far fa-times-circle" id="closeCard-${this.id}"></i></p>
