@@ -70,7 +70,7 @@ class Project {
                 <h2>Proyecto: ${this.name}</h2>
             </div>
             <h4 class="card__title">Tu Proyecto: ${this.name}, aproximadamente, tomará unas ${this.time}hs de trabajo
-            y costaría alrededor de los $${this.cost}</h4>
+            y costaría alrededor de los $${this.cost}.</h4>
             </div>
         </div>
         `);
@@ -81,15 +81,15 @@ class Project {
         let proyCard = $(`#card-${this.id}`);
         proyCard.show();
         proyCard.css({
-            'top':'-40rem',
+            'position':'fixed',
+            'top':'33%',
             'opacity':'0',
             'transform':'scale(1.2)',
         }).animate({
             'opacity':'1',
         }, "fast");
         proyCard.click(()=>{
-            proyCard.animate({'top':'0',},"fast");
-            proyCard.css({'transform':'scale(1)',});
+            proyCard.animate({'top':'90%'},"fast",()=>{proyCard.css({'position':'relative','transform':'scale(1)',});});  
         }); 
         }
 }
@@ -128,19 +128,26 @@ $("footer").on("click", ".card__exit", deleteProy);
 /* Creacion de Cliente Proyecto y Producto */
 
 function createUser(){
-    client = new Client($("#userName").val(), $("#userMail").val());
-    $("#btnNewProj").prop('disabled',false);
-    $("#form-project").parent().animate({
-        scrollTop: $("#form-project").height()
-    }, "slow","swing");
-    $(".project-title").text(`Bienvenido! ${client.name}!`);
-    console.log(client);
-    
+    if(($('#userName').val() != "") && ($('#userMail').val() != "")){
+        client = new Client($("#userName").val(), $("#userMail").val());
+        $("#btnNewProj").prop('disabled',false);
+        $("#form-project").parent().animate({
+            scrollTop: $("#form-project").height()
+        }, "slow","swing");
+        $(".project-title").text(`Bienvenido! ${client.name}!`);
+        console.log(client);
+    }
+    else{
+        alert("Por favor, para empezar completa los campos requeridos!");
+    }
 }
 
 function createProj(){
     if (client.projects.length > 2) {
         alert("Tranquilo, tigre/sa. Empecemos con 3 proyectos. Si queres, podes eliminar alguno de los anteriores.");
+    }
+    else if ($('#projName').val() == ""){
+        alert("Por favor, para empezar completa los campos requeridos!");
     }
     else {
         let id = nextId(client.projects);
