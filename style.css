@@ -30,6 +30,7 @@ p {
 }
 
 .client-input {
+  color: white;
   padding: 5px 0 5px 10px;
   width: 80%;
   border-radius: 5px;
@@ -40,19 +41,18 @@ p {
 body {
   -ms-overflow-style: none;
   /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
 }
 body ::-webkit-scrollbar {
   display: none;
 }
 body .form-container {
+  scrollbar-width: none;
   position: relative;
   box-sizing: border-box;
   width: 500px;
   height: 572px;
   padding: 40px 40px 0 40px;
-  overflow: scroll;
+  overflow: hidden;
   border-radius: 40px;
   background-color: white;
   box-shadow: inset 0px 0px 19px #bdbdbd;
@@ -180,6 +180,7 @@ body .form-container .products .product-form .product-creator .multiplier {
   border: 2px;
   border-bottom: 2px solid #542470;
   margin: 15px 8px;
+  text-align: center;
 }
 body .form-container .products .product-form .product-creator #seg2d {
   width: 38%;
@@ -437,8 +438,9 @@ main aside p span {
   text-shadow: black 3px 1px 0px;
 }
 main .bud-script {
-  background: #f7edcc;
+  background: linear-gradient(314deg, #c4abff, #ffb8a6);
   width: 65%;
+  box-shadow: 6px 0px 16px 0px black;
 }
 
 /* Tarjeta de Proyecto!!!------- */

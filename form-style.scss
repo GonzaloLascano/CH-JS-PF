@@ -16,7 +16,6 @@ $colors: ("lila":#CBAEC2, "violeta":#542470,"black":black,"grey":grey,"client-in
         display: none;
     }
     -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
 } 
 
 /* individual elements */
@@ -40,6 +39,7 @@ p{
     border: none;
 }
 .client-input {
+    color: white;
     padding: 5px 0 5px 10px;
     width: 80%;
     border-radius: 5px;
@@ -51,6 +51,7 @@ p{
 body {
     @include hideScrollbar();
     .form-container {
+        scrollbar-width: none;
         h2 {
             font-size: 3rem;
             color: rgb(66, 20, 66);
@@ -60,7 +61,7 @@ body {
         width: 500px;
         height: 572px;
         padding: 40px 40px 0 40px;
-        overflow: scroll;
+        overflow: hidden;
         border-radius: 40px;
         background-color: white;
         box-shadow: inset 0px 0px 19px #bdbdbd;
@@ -175,6 +176,7 @@ body {
                         border: 2px;
                         border-bottom: 2px solid map-get($colors, "violeta");
                         margin: 15px 8px;
+                        text-align: center;
                     }
                     #seg2d{
                         width: 38%;

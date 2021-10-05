@@ -19,6 +19,9 @@ $paleta: (
     rgba(247, 237, 204,)
     radial-gradient(rgba(255, 180, 82, 0.521), rgba(255, 136, 235, 0.664),)
     radial-gradient(rgb(185, 151, 105), rgb(165, 112, 156),)
+    linear-gradient(115deg, #ffffff 20%, #d3972b26)
+    linear-gradient(314deg, #c4abff, #ffb8a6)
+
 
 );
 
@@ -153,8 +156,9 @@ main {
         }
     }
     .bud-script{
-        background: nth($paleta , 9 );
+        background: nth($paleta , 13 );
         width: 65%;
+        box-shadow: 6px 0px 16px 0px black;
     }
 }
 

@@ -17,8 +17,8 @@ a futuro las tareas a realizar son:
 4.Agregar limitadores: de proyectos a 3, de productos (x proyecto) a 4 ☑
 5.Programar creacion de tarjeta por proyecto y de icono de producto. ☑
 6.Programar funciones para eliminar proyectos y productos del array con un click en un elemento especifico.☑
-7.Mejorar la interfaz.☑
-8.Agregar animaciones que mejoren el recorrido por la aplicación.
-9.Verificar funcionamiento del storage y ajax.
+7.Mejorar la interfaz.☑(minimo alcanzado, aun se puede mejorar)
+8.Agregar animaciones que mejoren el recorrido por la aplicación.☑(minimo alcanzado, se puede mejorar.)
+9.Verificar funcionamiento del storage y ajax.☑
 
 

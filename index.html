@@ -50,14 +50,14 @@
                     <div class="user-form">
                          <!-- Registro de usuario/cliente -->
                          
-                        <input class="client-input" type="text" name="userName" placeholder="Nombre" id="userName">
-                        <input class="client-input" type="text" name="userMail" placeholder="Mail" id="userMail">
+                        <input class="client-input" type="text" name="userName" placeholder="Como te decimos?" id="userName">
+                        <input class="client-input" type="email" name="userMail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Tu E-mail" id="userMail">
                 
-                        <button class="btn btn-dark" id="btnNewCl" type="button">Sign In</button>
+                        <button class="btn btn-dark" id="btnNewCl" type="button">Comencemos</button>
                         <!-- insertar user form aca -->
                     </div>    
                 </div>
-                <div class="form-page project">
+                <div class="form-page project" id="form-project">
                     <div class="project-header">
                         <h2 class="project-title">
                             Bienvenido saracatunga!
@@ -127,11 +127,11 @@
                                 <!-- 2d -->
                                 <div id="timer2d">
                                     <input class="multiplier" type="text" name="propName" placeholder="Nombre del objeto/personaje" id="propName">
-                                    <input class="multiplier" type="text" name="seg2d" placeholder="Seg. de Animacón" id="seg2d">
+                                    <input class="multiplier" type="number" name="seg2d" placeholder="Seg. de Animacón" id="seg2d">
                                 </div>
                                 <!-- Edicion de Video -->
                                 <div id="EVTimer">
-                                    <input class="multiplier" type="text" name="minVide" placeholder="Min. de Edición" id="minVideo">
+                                    <input class="multiplier" type="number" name="minVide" placeholder="Min. de Edición" id="minVideo">
                                 </div>
                                 <div id="prodTareas">
                                     <div class="task-pack" id="tasks3d">

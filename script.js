@@ -1,36 +1,30 @@
 
 $(document).ready();
 
-//<pruebas api--------
+const API_KEY = "56489b167348bed758c0";
+const CURRENCY_CONVERTER_URL = `https://free.currconv.com/api/v7/convert?q=ARS_USD&compact=ultra&apiKey=${API_KEY}`;
+const TIMEOUT = 5000;
 
-//const WT_URL = "http://worldtimeapi.org/api/timezone/America/Argentina/Buenos_Aires";
-/* const WT_URL = "http://worldclockapi.com/api/json/utc/now";
-
-fetch(WT_URL)
-    .then(r => r.json())
-    .then(data => data.datetime)
-    .then(strdate => new Date( Date.parse(strdate) ))
-    .then(changeColor); */
-
-
-/* function changeColor(now) {
-    console.log(now);
-    if (now.getHours() < 15) {
-        $('body').css({
-            'background-color': 'blue'
-        })
-    }
-} */
-//</pruebas api-------------
+let usdRatio = -1;
+$.getJSON({url: CURRENCY_CONVERTER_URL, timeout: TIMEOUT} , function(data) {
+    console.log(data);
+    usdRatio = data.ARS_USD;
+})
+    .fail(function(_jqXHR, textStatus) {
+        console.log(`Could not retrieve response from currency converter api, status: ${textStatus}`);
+    });
 
 
-/* Definiendo variables */
+
+
+/* Definiendo variables principales */
 let client;
 let project; 
 let prodType;
 let prodTime;
-let laborFee = 500;
+const laborFee = 500;
 const TASKS = ["#design3d", "#production3d", "#render3d", "#body2d", "#face2d", "#character2d", "#evMontaje", "#evColor", "#evEncoding"];
+
 /* Definiendo Classes que construiran los objetos principales */
 
 class Client {
@@ -39,14 +33,10 @@ class Client {
         this.mail = mail;
         this.projects = [];
     }
-    /* clientLog(this){
-        localstorage.setItem("Client", JSON.stringify(this));
-    } */
     addProject(project){
         this.projects.push(project);
     }
 };
-
 
 class Project {
     constructor(name, id) {
@@ -61,42 +51,46 @@ class Project {
     }
     addProduct(product){
         this.products.push(product);
-        this.time = this.time + product.time;
-        this.cost = this.time * laborFee;
+    }
+    deleteProduct(idx){
+        this.products.splice(idx, 1);
     }
     displayCard() {
-        /*     $('#usuario').text(`${client.name}`);
-            $('.card__title').text(`Tu proyecto ${project.name} llevaria unas ${project.time}hs de trabajo y costaria aproximadamente $${project.cost}.`) */
-            
-            $('footer').append(`
-            <div class="card" id="card-${this.id}">
-            <i title="mostrar cartas" class="fas fa-star" id="show-card"></i>
-            <div class="card1-content">
-                <p class="card__exit"><i class="far fa-times-circle" id="closeCard-${this.id}"></i></p>
-                <div class="card__icon">
-                    <i class="fas fa-bolt"></i>
-                    <h2>Proyecto: ${this.name}</h2>
-                </div>
-                <h4 class="card__title">Tu Proyecto: ${this.name}, aproximadamente, tomará unas ${this.time}hs de trabajo
-                y costaría alrededor de los $${this.cost}</h4>
-                </div>
+        for (let product of this.products) {
+            this.time = this.time + product.time;
+        }
+        this.cost = this.time * laborFee;
+        $('footer').append(`
+        <div class="card" id="card-${this.id}">
+        <i title="mostrar cartas" class="fas fa-star" id="show-card"></i>
+        <div class="card1-content">
+            <p class="card__exit"><i class="far fa-times-circle" id="closeCard-${this.id}"></i></p>
+            <div class="card__icon">
+                <i class="fas fa-bolt"></i>
+                <h2>Proyecto: ${this.name}</h2>
             </div>
-            `);
-            let proyCard = $(`#card-${this.id}`);
-            proyCard.show();
-            proyCard.css({
-                'top':'-40rem',
-                'opacity':'0',
-                'transform':'scale(1.2)',
-            }).animate({
-                'opacity':'1',
-            }, "fast");
-            proyCard.click(()=>{
-                proyCard.animate({'top':'0',},"fast");
-                proyCard.css({'transform':'scale(1)',});
-            });
-        
-        
+            <h4 class="card__title">Tu Proyecto: ${this.name}, aproximadamente, tomará unas ${this.time}hs de trabajo
+            y costaría alrededor de los $${this.cost}</h4>
+            </div>
+        </div>
+        `);
+        if (usdRatio > 0) {
+            let costInUsd = (this.cost * usdRatio).toFixed(2);
+            $(".card__title").append(`<br>Costo aproximado en dólares: USD$${costInUsd}`);
+        }
+        let proyCard = $(`#card-${this.id}`);
+        proyCard.show();
+        proyCard.css({
+            'top':'-40rem',
+            'opacity':'0',
+            'transform':'scale(1.2)',
+        }).animate({
+            'opacity':'1',
+        }, "fast");
+        proyCard.click(()=>{
+            proyCard.animate({'top':'0',},"fast");
+            proyCard.css({'transform':'scale(1)',});
+        }); 
         }
 }
 
@@ -108,20 +102,16 @@ class Product {
         this.time = this.tasks.total * this.multiplier;
         this.id = id;
     }
-
     addSelectedTsk(tasklist) {
         this.tasks.selectedTasks.push(tasklist)
     }
-    
-
     displayItem() {
         let prodValue = $('#typeCont input:checked').val();
         $(".product-shelf").append(`<li id="${project.products.length}" title="Producto: ${this.type} deadline: ${this.time}hs" class="product-icon icon-${prodValue}"></li>`);
-        //console.log($(".product-icon"));
     }
 }
 
-/* Agregando escucha de eventos */
+/* Agregando escucha de eventos principales*/
 
 /* botones----- */
 $("#btnNewCl").on("click", createUser);
@@ -140,6 +130,10 @@ $("footer").on("click", ".card__exit", deleteProy);
 function createUser(){
     client = new Client($("#userName").val(), $("#userMail").val());
     $("#btnNewProj").prop('disabled',false);
+    $("#form-project").parent().animate({
+        scrollTop: $("#form-project").height()
+    }, "slow","swing");
+    $(".project-title").text(`Bienvenido! ${client.name}!`);
     console.log(client);
     
 }
@@ -149,9 +143,13 @@ function createProj(){
         alert("Tranquilo, tigre/sa. Empecemos con 3 proyectos. Si queres, podes eliminar alguno de los anteriores.");
     }
     else {
-        let id = getProjId();
+        let id = nextId(client.projects);
         project = new Project($("#projName").val(),id);
         client.addProject(project);
+        $('.product-title').text(`Proyecto ${project.name}`);
+        $("#form-project").parent().animate({
+            scrollTop: ($("#form-project").height())*2
+        }, "slow","swing");
         console.log(client);
     }
 }
@@ -161,31 +159,39 @@ function createProd(){
         alert("Has superado el limite de productos. Si queres podes eliminar uno.")
     }
     else{
-        let id = getId();
+        let id = nextId(project.products);
         prodType = $('#typeCont input:checked').next("label").text();
-        //prodValue = $('#typeCont input:checked').val();
         let product = new Product(prodType, id);
-        product.displayItem();
-        project.addProduct(product);
-        console.log(project.products);
-        resetCheckBoxes();
-        resetTextBoxes();
-        resetRadios();
-        $("#addProd").prop('disabled',true);
-        btnEnabler(project.products, '#endProject');
+        if (product.time == 0){
+            alert('Recuerda completar todos los campos. Con la información solicitada.');
+        }
+        else{
+            product.displayItem();
+            project.addProduct(product);
+            console.log(project.products);
+            resetCheckBoxes();
+            resetTextBoxes();
+            resetRadios();
+            $("#addProd").prop('disabled',true);
+            btnEnabler(project.products, '#endProject');
+        }
     }
 }
-
+//----Finzalizacion de Proyecto-----
 function endProy(){
     project.displayCard();
     project = 0;
     $(".product-icon").remove();
-
+    $("#form-project").parent().animate({
+        scrollTop: ($("#form-project").height())
+    }, "slow","swing");
 }
+
+/* Borrado de Productos y de Proyectos */
 
 function deleteProd() {
     let idx = $(this).index(".product-icon");
-    project.products.splice(idx,1);
+    project.deleteProduct(idx);
     $(this).remove();
     btnEnabler(project.products, '#endProject');
     console.log(project.products);
@@ -199,18 +205,9 @@ function deleteProy() {
     console.log(client.projects);
 }
 
-function getId(){
-	if (project.products.length > 0) {
-		return project.products[project.products. length -1].id + 1
-	}
-	else{
-		return 1;
-	} 
-}
-
-function getProjId(){
-	if (client.projects.length > 0) {
-		return client.projects[client.projects.length -1].id + 1
+function nextId(array){
+	if (array.length > 0) {
+		return array[array.length -1].id + 1;
 	}
 	else{
 		return 1;
@@ -252,6 +249,15 @@ function newShowType() {
 
 }
 
+function btnEnabler(toCheck, toEnable){
+    if (toCheck.length > 0){
+        $(toEnable).prop('disabled',false);
+    }
+    else {
+        $(toEnable).prop('disabled',true);
+    }
+}
+
 /* Manejo de las tareas del Producto -------------*/
 
 function createTasks() {
@@ -282,31 +288,26 @@ function resetForm() {
     resetRadios();
     resetOption();    
 }
-
 function resetCheckBoxes() {
     $('input[type=checkbox]').prop('checked',false);
 }
-
 function resetTextBoxes() {
-    $('.project-form input[type=text]').val("");
-    $('.product-form input[type=text]').val("");
+    $('.project-form input[type=text],[type=number]').val("");
+    $('.product-form input[type=text],[type=number]').val("");
 }
-
 function resetProyText() {
-    $('.product-timer input[type=text]').val("");
+    $('.product-timer input[type=text],[type=number]').val("");
 }
-
 function resetOption(){
     $('#subType3d').val("0")
 }
-
 function resetRadios(){
     $('#typeCont input').prop('checked', false);
 }
 
 //-----------------------------------------------------
 
-/* Storage, almacenamiento y AJAX */
+/* Storage y almacenamiento*/
 
 function storeUser() {
     console.log(client);
@@ -324,13 +325,4 @@ $('#saveUserData').click(() => {
     }
     );
 }
-)
-
-function btnEnabler(toCheck, toEnable){
-    if (toCheck.length > 0){
-        $(toEnable).prop('disabled',false);
-    }
-    else {
-        $(toEnable).prop('disabled',true);
-    }
-}
+);
